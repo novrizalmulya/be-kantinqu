@@ -19,14 +19,14 @@ module.exports = {
 
     verifyAdmin: (req, res, next) => {
         if (req.user.role !== 'admin') {
-            return res.status(403).json(response(403, 'Akses ditolak'));
+            return res.status(403).json(response(403, 'Akses ditolak, Hanya Admin'));
         }
         next()
     },
 
     verifyKasir: (req, res, next) => {
         if (req.user.role !== 'kasir') {
-            return res.status(403).json(response(403, 'Akses ditolak, hanya kasir'))
+            return res.status(403).json(response(403, 'Akses ditolak, Hanya Kasir'))
         }
         next()
 }

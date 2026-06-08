@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const app = express()
+const cors = require('cors')    
 const { sequelize } = require('./models')
 const { verifyToken } = require('./middlewares/auth')
 
@@ -9,6 +10,11 @@ const port = 3000
 sequelize.authenticate()
     .then(() => console.log('Koneksi database berhasil'))
     .catch((error) => console.error('Koneksi database gagal:', error.message))
+
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+}))
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
